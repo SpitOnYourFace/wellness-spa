@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="adminPageTitle">Админ Панел</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧖‍♀️</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%238BA888'/%3E%3Cpath d='M50 20c-4 12-16 20-16 30 0 9 7 16 16 16s16-7 16-16c0-10-12-18-16-30z' fill='white' opacity='0.9'/%3E%3Cpath d='M50 28c-3 9-10 15-10 22 0 6 4 10 10 10s10-4 10-10c0-7-7-13-10-22z' fill='%238BA888' opacity='0.3'/%3E%3C/svg%3E">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" id="ogTitle" content="Админ Панел - Serenity Spa">
+    <meta property="og:description" content="Административен панел за управление на резервации">
+    <meta property="og:image" id="ogImage" content="/og-image.png">
     <link rel="stylesheet" href="admin-style.css?v=20260221d">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1118,6 +1124,9 @@
                 document.getElementById('loginSubtitle').textContent = cfg.admin.title;
                 document.getElementById('sidebarBrand').textContent = cfg.business.shortName;
                 document.getElementById('profileName').textContent = cfg.admin.ownerName;
+                if (cfg.seo && cfg.seo.ogUrl) {
+                    document.getElementById('ogImage').content = cfg.seo.ogUrl + '/og-image.png';
+                }
             } catch(e) { console.error('Config load failed:', e); }
         }
         loadAdminConfig();
