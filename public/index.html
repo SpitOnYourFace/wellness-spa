@@ -42,7 +42,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap"></noscript>
 
     <!-- Critical CSS (cache-bust) -->
-    <link rel="stylesheet" href="style.css?v=20260221d">
+    <link rel="stylesheet" href="style.css?v=20260222a">
     <link rel="stylesheet" href="animations.css">
 
     <!-- DNS prefetch for external resources -->
@@ -386,23 +386,13 @@
         #submitBtn:disabled { opacity: 0.6; cursor: not-allowed; }
     </style>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer onload="AOS.init({duration:600,once:true,offset:60})"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            if (typeof AOS !== 'undefined') {
-                AOS.init({ duration: 700, once: true, offset: 80 });
-            } else {
-                const waitAOS = setInterval(() => {
-                    if (typeof AOS !== 'undefined') {
-                        clearInterval(waitAOS);
-                        AOS.init({ duration: 700, once: true, offset: 80 });
-                    }
-                }, 50);
-                setTimeout(() => clearInterval(waitAOS), 5000);
-            }
+            if (typeof AOS !== 'undefined') AOS.init({ duration: 600, once: true, offset: 60 });
         });
 
-        // Header scroll effect
+        // Header scroll effect (passive for perf)
         let lastScroll = 0;
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
@@ -412,7 +402,7 @@
                 header.classList.remove('scrolled');
             }
             lastScroll = window.scrollY;
-        });
+        }, { passive: true });
 
         let SERVICE_PRICES = {};
         let SITE_CONFIG = null;
@@ -736,8 +726,8 @@
                 if(i===0) card.classList.add("active");
                 card.onclick = () => selectDate(card, isoDate);
                 card.innerHTML = '<span class="day-name">' + dayName + '</span>' +
-                    '<span class="day-number">' + d.getDate() + '</span>' +
-                    '<span class="month-name">' + months[d.getMonth()] + '</span>';
+                    '<span class="day-num">' + d.getDate() + '</span>' +
+                    '<span class="month">' + months[d.getMonth()] + '</span>';
                 scroller.appendChild(card);
 
                 if(i===0) {
@@ -977,27 +967,19 @@
             if (event.target == modal) closeModal();
         }
 
-        // Scroll spy
-        const sections = document.querySelectorAll('section[id]');
+        // Scroll spy using IntersectionObserver (no scroll event)
         const navLinksAll = document.querySelectorAll('nav a');
-
-        function highlightNav() {
-            const scrollY = window.scrollY;
-            sections.forEach(section => {
-                const top = section.offsetTop - 100;
-                const height = section.offsetHeight;
-                const id = section.getAttribute('id');
-                if (scrollY >= top && scrollY < top + height) {
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
                     navLinksAll.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === '#' + id) link.classList.add('active');
+                        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
                     });
                 }
             });
-        }
-
-        window.addEventListener('scroll', highlightNav);
-        highlightNav();
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
     </script>
     <script src="scroll-animations.js"></script>
 </body>

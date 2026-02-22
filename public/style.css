@@ -1224,7 +1224,7 @@ footer {
     margin-bottom: 20px;
 }
 
-.slot-btn {
+.time-slot {
     padding: 10px;
     border: 1px solid rgba(139, 168, 136, 0.15);
     background: var(--bg-elevated);
@@ -1238,21 +1238,26 @@ footer {
     font-family: var(--font-body);
 }
 
-.slot-btn:hover {
+.time-slot:hover {
     border-color: rgba(139, 168, 136, 0.25);
     background: rgba(139, 168, 136, 0.05);
 }
 
-.slot-btn.active {
+.time-slot.selected {
     background: var(--gold);
     color: #FFFFFF;
     border-color: var(--gold);
 }
 
-.slot-btn.taken {
+.time-slot.taken {
     opacity: 0.3;
     cursor: not-allowed;
     text-decoration: line-through;
+}
+
+.time-slot.taken:hover {
+    background: var(--bg-elevated);
+    border-color: rgba(139, 168, 136, 0.15);
 }
 
 .placeholder-text {
