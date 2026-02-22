@@ -432,15 +432,21 @@
                     const card = document.createElement('div');
                     card.className = 'service-card' + (svc.featured ? ' featured' : '');
                     card.setAttribute('data-aos', 'fade-up');
-                    card.setAttribute('data-aos-delay', (i * 100).toString());
+                    card.setAttribute('data-aos-delay', (i * 80).toString());
                     card.onclick = () => selectService(svc.name, svc.price);
-                    card.innerHTML = (svc.featured ? '<div class="featured-badge"><i class="fas fa-star"></i> Препоръчано</div>' : '') +
-                        '<img src="' + svc.image + '" alt="' + svc.name + '" class="service-icon" loading="lazy" />' +
-                        '<h3>' + svc.name + '</h3>' +
-                        '<div class="service-duration">' + svc.duration + ' мин</div>' +
-                        '<div class="service-footer">' +
-                            '<span class="price">' + svc.price + ' ' + cfg.booking.currency + '</span>' +
-                            '<button class="book-btn">Запази</button>' +
+                    card.innerHTML =
+                        '<div class="service-img-wrap">' +
+                            '<img src="' + svc.image + '" alt="' + svc.name + '" class="service-icon" loading="lazy" />' +
+                            '<div class="service-img-overlay"></div>' +
+                            (svc.featured ? '<div class="featured-badge"><i class="fas fa-star"></i> Препоръчано</div>' : '') +
+                            '<div class="service-duration"><i class="far fa-clock"></i> ' + svc.duration + ' мин</div>' +
+                        '</div>' +
+                        '<div class="service-body">' +
+                            '<h3>' + svc.name + '</h3>' +
+                            '<div class="service-footer">' +
+                                '<span class="price">' + svc.price + ' ' + cfg.booking.currency + '</span>' +
+                                '<button class="book-btn"><i class="fas fa-calendar-check"></i> Запази</button>' +
+                            '</div>' +
                         '</div>';
                     grid.appendChild(card);
                 });
