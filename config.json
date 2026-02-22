@@ -1,0 +1,104 @@
+{
+  "_comment": "Конфигурация на бизнеса. Промени този файл за нов клиент — целият сайт се адаптира автоматично.",
+
+  "business": {
+    "name": "Elite Barber Studio",
+    "shortName": "ELITE BARBER",
+    "tagline": "Стилът започва тук",
+    "description": "Модерно подстригване и класическо бръснене в сърцето на града.",
+    "phone": "+359879691194",
+    "phoneDisplay": "087 969 1194",
+    "email": "info@elitebarber.bg",
+    "address": {
+      "street": "бул. Витоша 45",
+      "district": "Център",
+      "city": "София",
+      "googleMapsQuery": "бул.+Витоша+45,+София"
+    },
+    "social": {
+      "instagram": "https://instagram.com/krasikralev",
+      "facebook": "https://facebook.com/krasikralev",
+      "tiktok": "https://tiktok.com/@krasikralev"
+    },
+    "rating": {
+      "score": "4.9",
+      "count": 127
+    },
+    "year": 2026
+  },
+
+  "theme": {
+    "primaryColor": "#d4af37",
+    "primaryColorHover": "#b5952f",
+    "bgColor": "#111",
+    "heroImage": "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=75",
+    "logo": "logo.svg",
+    "fonts": {
+      "heading": "Oswald",
+      "body": "Roboto"
+    }
+  },
+
+  "services": [
+    {
+      "name": "Мъжко Подстригване",
+      "price": 13,
+      "description": "Класическо или модерно, с внимание към всеки детайл.",
+      "icon": "fas fa-cut",
+      "featured": false
+    },
+    {
+      "name": "Оформяне на Брада",
+      "price": 8,
+      "description": "Прецизно оформяне, контуриране и терапия с топли кърпи.",
+      "icon": "fas fa-user",
+      "featured": false
+    },
+    {
+      "name": "Пълен Пакет",
+      "price": 18,
+      "description": "Подстригване + Брада + Измиване и стайлинг. VIP третиране.",
+      "icon": "fas fa-crown",
+      "featured": true
+    },
+    {
+      "name": "Детско Подстригване",
+      "price": 10,
+      "description": "За малките джентълмени (до 12г). Търпение и усмивки.",
+      "icon": "fas fa-child",
+      "featured": false
+    }
+  ],
+
+  "workHours": {
+    "slots": [
+      "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
+      "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30"
+    ],
+    "display": [
+      { "days": "Пон - Пет", "hours": "10:00 - 19:00" },
+      { "days": "Събота", "hours": "10:00 - 14:00" },
+      { "days": "Неделя", "hours": "Затворено", "closed": true },
+      { "days": "Почивка", "hours": "13:00 - 15:00", "break": true }
+    ]
+  },
+
+  "booking": {
+    "confirmationPrefix": "EB",
+    "daysAhead": 14,
+    "currency": "€",
+    "phoneRegex": "^(\\+359|0)8[7-9][0-9]{7}$"
+  },
+
+  "seo": {
+    "title": "Elite Barber Studio - София | Онлайн Резервации",
+    "description": "Модерно подстригване и класическо бръснене в центъра на София. Elite Barber Studio — запази час онлайн за секунди!",
+    "keywords": "бръснарница, подстригване, София, барбершоп, брада, мъжко подстригване, online booking",
+    "ogUrl": "https://demo-barber.up.railway.app"
+  },
+
+  "admin": {
+    "title": "Админ Панел",
+    "ownerName": "Админ"
+  }
+}
