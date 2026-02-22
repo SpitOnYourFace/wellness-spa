@@ -12,9 +12,9 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #111;
-    color: #fff;
+    font-family: 'Lato', sans-serif;
+    background-color: #FAFAF8;
+    color: #2C3E2F;
     line-height: 1.6;
     overflow-x: hidden;
     width: 100%;
@@ -22,7 +22,7 @@ body {
 }
 
 h1, h2, h3, .logo {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Playfair Display', sans-serif;
     text-transform: uppercase;
 }
 
@@ -30,10 +30,10 @@ a { text-decoration: none; color: inherit; }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: #1a1a1a; }
-::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #d4af37, #b8962e); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #f0d875, #d4af37); }
-* { scrollbar-width: thin; scrollbar-color: #d4af37 #1a1a1a; }
+::-webkit-scrollbar-track { background: #F5E6D3; }
+::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #8BA888, #7a9477); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #C8B8DB, #8BA888); }
+* { scrollbar-width: thin; scrollbar-color: #8BA888 #F5E6D3; }
 
 /* Navigation */
 header {
@@ -41,7 +41,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 50px;
-    background: linear-gradient(180deg, rgba(15,15,15,0.95) 0%, rgba(8,8,8,0.9) 100%);
+    background: linear-gradient(180deg, rgba(250,250,248,0.98) 0%, rgba(250,250,248,0.95) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     position: fixed;
@@ -64,7 +64,7 @@ header.scrolled {
 .logo {
     font-size: 22px;
     font-weight: bold;
-    background: linear-gradient(135deg, #d4af37 0%, #f0d875 50%, #d4af37 100%);
+    background: linear-gradient(135deg, #8BA888 0%, #C8B8DB 50%, #8BA888 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -82,7 +82,7 @@ header.scrolled {
     transform: rotate(-45deg);
     display: inline-block;
     transition: all 0.3s;
-    background: linear-gradient(135deg, #d4af37, #f0d875);
+    background: linear-gradient(135deg, #8BA888, #C8B8DB);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -129,7 +129,7 @@ nav a::after {
     left: 50%;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    background: linear-gradient(90deg, transparent, #8BA888, transparent);
     box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
     transition: all 0.3s;
     transform: translateX(-50%);
@@ -146,7 +146,7 @@ nav a.active::after {
 
 nav a:hover,
 nav a.active {
-    color: #d4af37;
+    color: #8BA888;
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
 }
 
@@ -173,7 +173,7 @@ nav a.active {
     left: 0;
     right: 0;
     height: 120px;
-    background: linear-gradient(transparent, #111);
+    background: linear-gradient(transparent, #FAFAF8);
     pointer-events: none;
 }
 
@@ -183,7 +183,7 @@ nav a.active {
     margin-bottom: 25px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #d4af37;
+    border: 3px solid #8BA888;
     box-shadow: 0 0 40px rgba(212, 175, 55, 0.3), 0 0 80px rgba(212, 175, 55, 0.1);
     animation: logoPulse 4s ease-in-out infinite;
 }
@@ -201,7 +201,7 @@ nav a.active {
 }
 
 .hero h1 span {
-    color: #d4af37;
+    color: #8BA888;
     text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
 }
 
@@ -232,7 +232,7 @@ nav a.active {
 }
 
 .trust-item i {
-    color: #d4af37;
+    color: #8BA888;
     font-size: 16px;
 }
 
@@ -250,8 +250,8 @@ nav a.active {
 }
 
 .btn {
-    background: linear-gradient(135deg, #d4af37 0%, #f0d875 50%, #d4af37 100%);
-    color: #111;
+    background: linear-gradient(135deg, #8BA888 0%, #C8B8DB 50%, #8BA888 100%);
+    color: #FAFAF8;
     padding: 15px 40px;
     font-size: 16px;
     font-weight: bold;
@@ -294,7 +294,7 @@ nav a.active {
                 0 4px 10px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.4),
                 inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-    background: linear-gradient(135deg, #f0d875 0%, #d4af37 50%, #f0d875 100%);
+    background: linear-gradient(135deg, #C8B8DB 0%, #8BA888 50%, #C8B8DB 100%);
 }
 
 .btn:active {
@@ -308,7 +308,7 @@ nav a.active {
     background: linear-gradient(145deg, rgba(30, 30, 30, 0.8), rgba(20, 20, 20, 0.9));
     border: 2px solid;
     border-image: linear-gradient(135deg, rgba(212, 175, 55, 0.6), rgba(240, 216, 117, 0.4), rgba(212, 175, 55, 0.6)) 1;
-    color: #d4af37;
+    color: #8BA888;
     padding: 13px 38px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 
                 inset 0 1px 0 rgba(255, 255, 255, 0.05),
@@ -337,7 +337,7 @@ nav a.active {
     box-shadow: 0 6px 25px rgba(212, 175, 55, 0.25), 
                 0 0 40px rgba(212, 175, 55, 0.15),
                 inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    color: #f0d875;
+    color: #C8B8DB;
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
@@ -346,7 +346,7 @@ nav a.active {
     text-align: center;
     font-size: 38px;
     margin-bottom: 60px;
-    color: #d4af37;
+    color: #8BA888;
     position: relative;
 }
 
@@ -355,7 +355,7 @@ nav a.active {
     display: block;
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, #d4af37, #f0d875);
+    background: linear-gradient(90deg, #8BA888, #C8B8DB);
     margin: 10px auto 0;
     border-radius: 2px;
 }
@@ -363,7 +363,7 @@ nav a.active {
 /* Services */
 .services {
     padding: 100px 50px;
-    background: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+    background: linear-gradient(180deg, #F5E6D3 0%, #FAFAF8 100%);
     position: relative;
 }
 
@@ -374,7 +374,7 @@ nav a.active {
 
 .section-label {
     display: inline-block;
-    color: #d4af37;
+    color: #8BA888;
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 4px;
@@ -393,15 +393,15 @@ nav a.active {
 .title-decoration .line {
     width: 60px;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #d4af37);
+    background: linear-gradient(90deg, transparent, #8BA888);
 }
 
 .title-decoration .line:last-child {
-    background: linear-gradient(90deg, #d4af37, transparent);
+    background: linear-gradient(90deg, #8BA888, transparent);
 }
 
 .title-decoration .scissors {
-    color: #d4af37;
+    color: #8BA888;
     font-size: 20px;
     animation: snip 2s infinite;
 }
@@ -444,7 +444,7 @@ nav a.active {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #c41e3a, #fff, #1e90ff);
+    background: linear-gradient(90deg, #c41e3a, #2C3E2F, #1e90ff);
     opacity: 0;
     transition: opacity 0.3s;
     box-shadow: 0 0 15px rgba(196, 30, 58, 0.4), 0 0 15px rgba(30, 144, 255, 0.4);
@@ -468,7 +468,7 @@ nav a.active {
 
 .service-card.featured::before {
     opacity: 1;
-    background: linear-gradient(90deg, #d4af37, #f0d875, #d4af37);
+    background: linear-gradient(90deg, #8BA888, #C8B8DB, #8BA888);
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
 }
 
@@ -476,8 +476,8 @@ nav a.active {
     position: absolute;
     top: 18px;
     right: -30px;
-    background: linear-gradient(135deg, #d4af37, #f0d875);
-    color: #111;
+    background: linear-gradient(135deg, #8BA888, #C8B8DB);
+    color: #FAFAF8;
     padding: 5px 40px;
     font-size: 10px;
     font-weight: bold;
@@ -490,7 +490,7 @@ nav a.active {
 /* Animated Service Icons */
 .service-icon {
     font-size: 36px;
-    color: #d4af37;
+    color: #8BA888;
     width: 70px;
     height: 70px;
     display: flex;
@@ -515,7 +515,7 @@ nav a.active {
 
 .service-card:hover .service-icon {
     transform: scale(1.1) rotate(5deg);
-    border-color: #d4af37;
+    border-color: #8BA888;
     box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
     background: radial-gradient(circle at center, rgba(212, 175, 55, 0.15), transparent);
 }
@@ -538,12 +538,12 @@ nav a.active {
 .service-card h3 {
     font-size: 20px;
     margin-bottom: 12px;
-    color: #fff;
+    color: #2C3E2F;
     transition: color 0.3s;
 }
 
 .service-card:hover h3 {
-    color: #d4af37;
+    color: #8BA888;
 }
 
 .service-card p {
@@ -564,14 +564,14 @@ nav a.active {
 
 .service-card .price {
     font-size: 26px;
-    color: #d4af37;
+    color: #8BA888;
     font-weight: bold;
 }
 
 .book-btn {
     background: transparent;
     border: 2px solid rgba(212, 175, 55, 0.5);
-    color: #d4af37;
+    color: #8BA888;
     padding: 10px 22px;
     cursor: pointer;
     font-weight: bold;
@@ -584,16 +584,16 @@ nav a.active {
 
 .service-card:hover .book-btn,
 .book-btn:hover {
-    background: linear-gradient(135deg, #d4af37, #b8962e);
-    color: #111;
-    border-color: #d4af37;
+    background: linear-gradient(135deg, #8BA888, #7a9477);
+    color: #FAFAF8;
+    border-color: #8BA888;
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
 /* Info Section */
 .info-section {
     padding: 80px 20px;
-    background: linear-gradient(180deg, #111 0%, #1a1a1a 100%);
+    background: linear-gradient(180deg, #FAFAF8 0%, #F5E6D3 100%);
 }
 
 .info-container {
@@ -628,8 +628,8 @@ nav a.active {
         180deg,
         #c41e3a 0px,
         #c41e3a 20px,
-        #fff 20px,
-        #fff 40px,
+        #2C3E2F 20px,
+        #2C3E2F 40px,
         #1e90ff 40px,
         #1e90ff 60px
     );
@@ -647,7 +647,7 @@ nav a.active {
 
 .info-main h2 {
     font-size: 32px;
-    color: #d4af37;
+    color: #8BA888;
     margin-bottom: 25px;
 }
 
@@ -660,7 +660,7 @@ nav a.active {
 
 .location-display i {
     font-size: 24px;
-    color: #d4af37;
+    color: #8BA888;
     margin-top: 5px;
 }
 
@@ -677,7 +677,7 @@ nav a.active {
     display: block;
     font-size: 20px;
     font-weight: bold;
-    color: #fff;
+    color: #2C3E2F;
 }
 
 .rating-display {
@@ -706,8 +706,8 @@ nav a.active {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: linear-gradient(135deg, #d4af37, #b8962e);
-    color: #111;
+    background: linear-gradient(135deg, #8BA888, #7a9477);
+    color: #FAFAF8;
     padding: 15px 30px;
     border-radius: 50px;
     font-weight: bold;
@@ -756,8 +756,8 @@ nav a.active {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #d4af37, #b5952f);
-    color: #111;
+    background: linear-gradient(135deg, #8BA888, #b5952f);
+    color: #FAFAF8;
     border-radius: 12px;
 }
 
@@ -767,7 +767,7 @@ nav a.active {
 
 .info-card-content h4 {
     font-size: 14px;
-    color: #d4af37;
+    color: #8BA888;
     margin-bottom: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -791,7 +791,7 @@ nav a.active {
 }
 
 .hour-time {
-    color: #fff;
+    color: #2C3E2F;
     font-weight: bold;
 }
 
@@ -812,12 +812,12 @@ nav a.active {
 /* Today indicator */
 .hour-row.today {
     background: rgba(212, 175, 55, 0.1);
-    border-left: 3px solid #d4af37;
+    border-left: 3px solid #8BA888;
     padding-left: 12px;
 }
 
 .hour-row.today span:first-child {
-    color: #d4af37;
+    color: #8BA888;
     font-weight: 600;
 }
 
@@ -826,7 +826,7 @@ nav a.active {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #fff;
+    color: #2C3E2F;
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
@@ -839,7 +839,7 @@ nav a.active {
 }
 
 .contact-link:hover {
-    color: #f0d875;
+    color: #C8B8DB;
     background: linear-gradient(145deg, rgba(40, 40, 40, 0.6), rgba(50, 50, 50, 0.6));
     box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -847,14 +847,14 @@ nav a.active {
 }
 
 .contact-link i {
-    color: #d4af37;
+    color: #8BA888;
     font-size: 20px;
     filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.4));
     transition: all 0.3s;
 }
 
 .contact-link:hover i {
-    color: #f0d875;
+    color: #C8B8DB;
     filter: drop-shadow(0 0 10px rgba(240, 216, 117, 0.6));
     transform: scale(1.1);
 }
@@ -873,7 +873,7 @@ nav a.active {
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    color: #fff;
+    color: #2C3E2F;
     text-decoration: none;
     transition: all 0.3s;
 }
@@ -904,7 +904,7 @@ nav a.active {
 /* Contact CTA */
 .contact {
     padding: 100px 20px;
-    background: #111;
+    background: #FAFAF8;
     text-align: center;
     position: relative;
 }
@@ -990,7 +990,7 @@ footer {
 }
 
 .close:hover {
-    color: #fff;
+    color: #2C3E2F;
     background: rgba(255,255,255,0.1);
 }
 
@@ -1038,16 +1038,16 @@ footer {
 }
 
 .progress-step.active .step-circle {
-    background: linear-gradient(135deg, #d4af37, #b8962e);
-    border-color: #d4af37;
-    color: #111;
+    background: linear-gradient(135deg, #8BA888, #7a9477);
+    border-color: #8BA888;
+    color: #FAFAF8;
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
 }
 
 .progress-step.completed .step-circle {
     background: #00D68F;
     border-color: #00D68F;
-    color: #fff;
+    color: #2C3E2F;
 }
 
 .progress-step .step-label {
@@ -1059,7 +1059,7 @@ footer {
 }
 
 .progress-step.active .step-label {
-    color: #d4af37;
+    color: #8BA888;
 }
 
 .progress-step.completed .step-label {
@@ -1076,7 +1076,7 @@ footer {
 }
 
 .progress-line.active {
-    background: linear-gradient(90deg, #00D68F, #d4af37);
+    background: linear-gradient(90deg, #00D68F, #8BA888);
 }
 
 /* Date Scroller */
@@ -1130,9 +1130,9 @@ footer {
 }
 
 .date-card.active {
-    background: linear-gradient(135deg, #d4af37, #b5952f);
-    color: #111;
-    border-color: #d4af37;
+    background: linear-gradient(135deg, #8BA888, #b5952f);
+    color: #FAFAF8;
+    border-color: #8BA888;
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
@@ -1161,7 +1161,7 @@ footer {
 
 .time-slot.free {
     background: rgba(50,50,50,0.5);
-    color: #fff;
+    color: #2C3E2F;
     border: 2px solid rgba(255,255,255,0.06);
 }
 
@@ -1172,10 +1172,10 @@ footer {
 }
 
 .time-slot.selected {
-    background: linear-gradient(135deg, #d4af37, #b5952f);
-    color: #111;
+    background: linear-gradient(135deg, #8BA888, #b5952f);
+    color: #FAFAF8;
     font-weight: bold;
-    border: 2px solid #d4af37;
+    border: 2px solid #8BA888;
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     animation: slotPop 0.3s ease;
 }
@@ -1201,7 +1201,7 @@ input[type="text"], input[type="tel"], input[type="email"] {
     margin-bottom: 12px;
     background: rgba(0,0,0,0.3);
     border: 2px solid rgba(255,255,255,0.1);
-    color: #fff;
+    color: #2C3E2F;
     border-radius: 12px;
     font-size: 16px;
     transition: all 0.3s;
@@ -1209,7 +1209,7 @@ input[type="text"], input[type="tel"], input[type="email"] {
 
 input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus {
     outline: none;
-    border-color: #d4af37;
+    border-color: #8BA888;
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
 }
 
@@ -1234,7 +1234,7 @@ input::placeholder {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #d4af37;
+    color: #8BA888;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -1248,7 +1248,7 @@ input::placeholder {
 .mobile-menu-btn {
     display: none;
     font-size: 24px;
-    color: #d4af37;
+    color: #8BA888;
     cursor: pointer;
     order: 3;
     margin-left: auto;
@@ -1272,7 +1272,7 @@ input::placeholder {
     transform: translateX(-50%) translateY(100px);
     background: rgba(30, 30, 30, 0.95);
     backdrop-filter: blur(10px);
-    color: #fff;
+    color: #2C3E2F;
     padding: 14px 20px;
     border-radius: 14px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.4);
@@ -1304,11 +1304,11 @@ input::placeholder {
 }
 
 .toast-success { border-left: 4px solid #00D68F; }
-.toast-success .toast-icon { background: #00D68F; color: #111; }
+.toast-success .toast-icon { background: #00D68F; color: #FAFAF8; }
 .toast-error { border-left: 4px solid #FF3D71; }
-.toast-error .toast-icon { background: #FF3D71; color: #fff; }
+.toast-error .toast-icon { background: #FF3D71; color: #2C3E2F; }
 .toast-info { border-left: 4px solid #4DA6FF; }
-.toast-info .toast-icon { background: #4DA6FF; color: #fff; }
+.toast-info .toast-icon { background: #4DA6FF; color: #2C3E2F; }
 
 /* Placeholder text in slots */
 .slots-grid .placeholder-text,
