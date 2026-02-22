@@ -1831,3 +1831,115 @@ body {
     will-change: transform;
     transform: translateZ(0);
 }
+
+/* ============================================ */
+/* FINAL FIXES - v3                             */
+/* ============================================ */
+
+/* Featured badge - ABOVE image */
+.featured-badge {
+    position: relative !important;
+    z-index: 10 !important;
+    display: inline-block !important;
+    margin-bottom: 12px !important;
+    padding: 6px 16px !important;
+    border-radius: 20px !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* Service images - elegant border & shadow */
+.service-icon {
+    border-radius: 14px !important;
+    border: 2px solid rgba(139, 168, 136, 0.15) !important;
+    box-shadow: 0 4px 15px rgba(139, 168, 136, 0.1) !important;
+    transition: all 0.4s ease !important;
+}
+
+.service-card:hover .service-icon {
+    border-color: rgba(139, 168, 136, 0.3) !important;
+    box-shadow: 0 8px 25px rgba(139, 168, 136, 0.18) !important;
+}
+
+/* Hero section - NO black, warm gradient */
+.hero {
+    background: linear-gradient(135deg, rgba(107,138,104,0.55), rgba(200,184,219,0.45)),
+                url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=90') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+}
+
+/* Services section - warm cream instead of black */
+.services, #services {
+    background: linear-gradient(180deg, #FAFAF8 0%, #F5F0EB 100%) !important;
+}
+
+/* Info section - elegant instead of black */
+.info-section, #info {
+    background: linear-gradient(135deg, #F5E6D3 0%, #E5DDF0 100%) !important;
+    color: #2C3E2F !important;
+}
+
+/* Booking modal - warm white */
+.modal, .booking-overlay {
+    background: rgba(44, 62, 47, 0.4) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.modal-content {
+    background: #FFFFFF !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 60px rgba(139, 168, 136, 0.2) !important;
+}
+
+/* Footer - elegant dark green instead of pure black */
+footer {
+    background: linear-gradient(135deg, #2C3E2F 0%, #1E2D20 100%) !important;
+}
+
+/* Remove any remaining dark backgrounds */
+.booking-section, #booking,
+.review-section, #reviews,
+.gallery-section, #gallery {
+    background: #FAFAF8 !important;
+}
+
+/* Hero logo - subtle shadow for visibility */
+.hero-logo {
+    filter: drop-shadow(0 4px 15px rgba(139, 168, 136, 0.3)) !important;
+}
+
+/* Trust badges - glass effect */
+.trust-badge, .badge {
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #FFFFFF !important;
+}
+
+/* Section labels */
+.section-label {
+    color: #8BA888 !important;
+    background: rgba(139, 168, 136, 0.08) !important;
+    border: 1px solid rgba(139, 168, 136, 0.15) !important;
+}
+
+/* Title decoration flower */
+.title-decoration .scissors {
+    color: #C8B8DB !important;
+    background: none !important;
+}
+
+/* Date/time selectors - warm styling */
+.date-item, .time-slot {
+    background: #FAFAF8 !important;
+    border: 1px solid rgba(139, 168, 136, 0.15) !important;
+    color: #2C3E2F !important;
+}
+
+/* Navbar text should not be uppercase */
+nav a, nav li a, .nav-links a {
+    text-transform: none !important;
+    font-family: 'Lato', sans-serif !important;
+}
