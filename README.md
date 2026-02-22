@@ -1,409 +1,257 @@
-# Barbershop Halil - Система за Онлайн Резервации
+# 🧖‍♀️ Serenity Wellness & Spa - Online Booking System
 
-Уеб приложение за управление на резервации в бръснарница, с клиентски интерфейс за записване на часове и админ панел за управление.
+Premium SPA center booking template with elegant design, therapist selection, and wellness features.
 
----
+## ✨ Features
 
-## Технологии
+### Client-Facing
+- **Elegant SPA Design** - Sage green, lavender & beige color scheme
+- **Service Catalog** - Massages, facials, manicure/pedicure, body treatments
+- **Therapist Selection** - Choose preferred therapist or "Без предпочитание"
+- **Massage Preferences** - Select pressure level (soft/medium/firm)
+- **Wellness Tips** - Post-booking aftercare recommendations
+- **Real-time Availability** - Smart booking system with conflict prevention
+- **Mobile-First Design** - Fully responsive for all devices
 
-| Компонент | Технология |
-|-----------|-----------|
-| Backend | Node.js + Express 5 |
-| Database | SQLite3 (файл: appointments.db) |
-| Frontend | Vanilla HTML/CSS/JS (без frameworks) |
-| Notifications | Telegram Bot API (long polling) |
-| Email | Nodemailer + Gmail SMTP |
-| Scheduler | node-cron (напомняния) |
-| Auth | express-session (server-side sessions) |
+### Admin Panel (`/admin`)
+- Dashboard with daily/weekly/monthly stats
+- Booking management (approve/cancel/reschedule)
+- Customer database with visit history
+- Revenue tracking and analytics
+- Email & Telegram notifications
 
-### npm Зависимости
-
-- `express` - HTTP сървър и routing
-- `sqlite3` - SQLite база данни
-- `dotenv` - Зареждане на .env конфигурация
-- `body-parser` - Парсиране на JSON request body
-- `cors` - Cross-Origin заявки
-- `express-session` - Сесии за админ автентикация
-- `nodemailer` - Изпращане на email-и
-- `node-cron` - Cron job за автоматични напомняния
+### Notifications
+- **Client:** Email + Telegram confirmation with wellness tips
+- **Business:** Instant alerts for new bookings
+- **Reminders:** Auto-reminders 24h before appointment
 
 ---
 
-## Файлова Структура
+## 🚀 Quick Start
 
-```
-halil/
-├── server.js              # Основен сървър + всички API routes
-├── scheduler.js           # Cron job за напомняния (30 мин преди час)
-├── seed.js                # Скрипт за попълване с тестови данни
-├── package.json           # Конфигурация и зависимости
-├── .env                   # Конфигурация (не се комитва!)
-├── .gitignore             # Изключени файлове от Git
-├── appointments.db        # SQLite база данни (авто-създава се)
-├── services/
-│   ├── telegram.js        # Telegram Bot API интеграция
-│   └── email.js           # Email нотификации (Nodemailer)
-└── public/
-    ├── index.html          # Клиентска страница за резервации
-    ├── style.css           # Стилове за клиентската страница
-    ├── admin.html          # Админ панел (HTML + inline JS + inline CSS)
-    ├── admin-style.css     # Основни стилове за админ панела
-    └── bg.png              # Фоново изображение за клиентската страница
-```
-
----
-
-## Инсталация и Стартиране
-
-### 1. Инсталиране на зависимости
-
+### 1. Install Dependencies
 ```bash
 npm install
 ```
 
-### 2. Конфигурация на .env
-
-Копирайте `.env.example` или създайте `.env` файл:
-
-```env
-# Сървър
-PORT=3000
-NODE_ENV=development
-
-# Админ акаунт
-ADMIN_USERNAME=halil
-ADMIN_PASSWORD=barber2024
-
-# Сесия
-SESSION_SECRET=your-secret-key-here
-
-# CORS
-ALLOWED_ORIGINS=http://localhost:3000
-
-# Telegram Bot (незадължително)
-TELEGRAM_BOT_TOKEN=your-telegram-bot-token
-TELEGRAM_ADMIN_CHAT_ID=your-chat-id
-
-# Email (незадължително)
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
+### 2. Configure Your SPA
+Edit `config.json`:
+```json
+{
+  "business": {
+    "name": "Your SPA Name",
+    "phone": "+359XXXXXXXXX",
+    "email": "info@yourspa.bg",
+    "address": { ... }
+  },
+  "services": [
+    {
+      "name": "Swedish Massage",
+      "duration": 60,
+      "price": 60,
+      "description": "..."
+    }
+  ],
+  "booking": {
+    "therapists": ["Maria", "Elena", "Svetlana"],
+    "massagePressure": ["Soft", "Medium", "Firm"]
+  }
+}
 ```
 
-### 3. Стартиране
+### 3. Set Up Notifications (Optional)
 
+**Telegram:**
+```bash
+# Get bot token from @BotFather
+export TELEGRAM_BOT_TOKEN="your_bot_token"
+export TELEGRAM_CHAT_ID="your_chat_id"
+```
+
+**Email (Gmail):**
+```bash
+export EMAIL_USER="yourspa@gmail.com"
+export EMAIL_PASS="your_app_password"  # Generate at myaccount.google.com/apppasswords
+```
+
+### 4. Run
 ```bash
 npm start
+# Visits: http://localhost:4000
 ```
 
-Сървърът стартира на `http://localhost:3000`.
+---
 
-### 4. Попълване с тестови данни (незадължително)
+## 📁 File Structure
 
+```
+wellness-spa/
+├── config.json          # 🎨 Single source of truth - edit this only!
+├── server.js            # Express backend with booking logic
+├── scheduler.js         # Auto-reminder system
+├── seed.js              # Database seeder (optional demo data)
+├── public/
+│   ├── index.html       # Client booking interface
+│   ├── admin.html       # Admin dashboard
+│   ├── style.css        # Spa theme styling
+│   └── admin-style.css  # Admin panel styling
+└── services/
+    ├── telegram.js      # Telegram notification handler
+    └── email.js         # Email notification handler
+```
+
+---
+
+## 🎨 Customization
+
+### Change Colors
+Edit `config.json` → `theme`:
+```json
+{
+  "theme": {
+    "primaryColor": "#8BA888",       // Sage green
+    "secondaryColor": "#C8B8DB",     // Lavender
+    "accentColor": "#F5E6D3",        // Warm beige
+    "heroImage": "your-image-url"
+  }
+}
+```
+
+### Add/Remove Services
+Edit `config.json` → `services`:
+```json
+{
+  "services": [
+    {
+      "name": "New Treatment",
+      "duration": 90,
+      "price": 100,
+      "description": "...",
+      "icon": "🌸",
+      "featured": true
+    }
+  ]
+}
+```
+
+### Adjust Work Hours
+Edit `config.json` → `workHours`:
+```json
+{
+  "workHours": {
+    "slots": ["09:00", "09:30", ...],
+    "display": [
+      { "days": "Пон - Пет", "hours": "09:00 - 20:00" }
+    ]
+  }
+}
+```
+
+---
+
+## 📊 Database Schema
+
+**SQLite** (`bookings.db`):
+
+```sql
+CREATE TABLE bookings (
+  id INTEGER PRIMARY KEY,
+  confirmation_code TEXT UNIQUE,
+  service TEXT,
+  date TEXT,
+  time TEXT,
+  name TEXT,
+  phone TEXT,
+  email TEXT,
+  therapist TEXT,           -- NEW: Preferred therapist
+  massage_pressure TEXT,    -- NEW: Pressure preference
+  has_allergies INTEGER,    -- NEW: Allergy flag
+  notes TEXT,
+  status TEXT DEFAULT 'pending',
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+---
+
+## 🔐 Admin Access
+
+**Default credentials:**
+- Username: `admin`
+- Password: `spaadmin2026`
+
+⚠️ **Change these in production!** Edit `server.js` line ~450.
+
+---
+
+## 🌍 Deployment
+
+### Railway (Recommended)
 ```bash
-node seed.js
+# 1. Install Railway CLI
+npm install -g @railway/cli
+
+# 2. Login & init
+railway login
+railway init
+
+# 3. Set environment variables
+railway variables set TELEGRAM_BOT_TOKEN=xxx
+railway variables set EMAIL_USER=xxx@gmail.com
+
+# 4. Deploy
+railway up
 ```
 
-Създава 30 клиента с ~93 резервации, включително за днес и утре.
-
----
-
-## База Данни
-
-SQLite с 3 таблици (създават се автоматично при старт):
-
-### appointments
-
-| Колона | Тип | Описание |
-|--------|-----|----------|
-| id | INTEGER PK | Автоматичен ID |
-| date | TEXT | Дата (YYYY-MM-DD) |
-| time | TEXT | Час (HH:MM) |
-| service | TEXT | Услуга |
-| price | REAL | Цена в лева |
-| clientName | TEXT | Име на клиента |
-| clientPhone | TEXT | Телефон (нормализиран: 08...) |
-| clientEmail | TEXT | Email (незадължителен) |
-| confirmationCode | TEXT | Уникален код (HB-XXXXXX) |
-| status | TEXT | pending / confirmed / rejected |
-| reminderSent | INTEGER | 0 или 1 (изпратено ли е напомняне) |
-| createdAt | DATETIME | Дата на създаване |
-
-### telegram_subscribers
-
-| Колона | Тип | Описание |
-|--------|-----|----------|
-| id | INTEGER PK | Автоматичен ID |
-| chatId | TEXT UNIQUE | Telegram Chat ID |
-| phone | TEXT UNIQUE | Телефонен номер |
-| name | TEXT | Име от Telegram |
-| subscribedAt | DATETIME | Дата на абониране |
-
-### blocked_phones
-
-| Колона | Тип | Описание |
-|--------|-----|----------|
-| id | INTEGER PK | Автоматичен ID |
-| phone | TEXT UNIQUE | Блокиран телефон |
-| reason | TEXT | Причина (незадължителна) |
-| blockedAt | DATETIME | Дата на блокиране |
-
----
-
-## Услуги и Работно Време
-
-### Услуги
-
-| Услуга | Цена | Продължителност (слот) |
-|--------|------|----------------------|
-| Мъжко Подстригване | 25 лв. | 30 мин |
-| Оформяне на Брада | 15 лв. | 30 мин |
-| Пълен Пакет | 35 лв. | 30 мин |
-| Детско Подстригване | 20 лв. | 30 мин |
-
-### Работно време
-
-- **Сутрин:** 10:00, 10:30, 11:00, 11:30, 12:00, 12:30
-- **Обедна почивка:** 13:00 – 15:00
-- **Следобед:** 15:00, 15:30, 16:00, 16:30, 17:00, 17:30, 18:00, 18:30
-
----
-
-## API Endpoints
-
-### Публични (без автентикация)
-
-| Метод | URL | Описание |
-|-------|-----|----------|
-| GET | `/api/health` | Статус на сървъра |
-| GET | `/api/slots?date=YYYY-MM-DD` | Свободни часове за дата |
-| GET | `/api/status/:code` | Статус на резервация по код |
-| POST | `/api/book` | Създаване на нова резервация |
-| POST | `/api/check-phone` | Проверка дали телефон е блокиран |
-
-### Админ - Автентикация
-
-| Метод | URL | Описание |
-|-------|-----|----------|
-| POST | `/api/admin/login` | Вход (username + password) |
-| POST | `/api/admin/logout` | Изход |
-| GET | `/api/admin/check-auth` | Проверка на сесия |
-
-### Админ - Управление (изисква автентикация)
-
-| Метод | URL | Описание |
-|-------|-----|----------|
-| GET | `/api/admin/appointments` | Всички резервации (поддържа ?search=) |
-| GET | `/api/admin/stats` | Статистика (приходи) |
-| GET | `/api/admin/notifications` | Чакащи заявки (за dropdown) |
-| POST | `/api/admin/action` | Потвърди/Откажи резервация |
-| POST | `/api/admin/edit` | Редакция на име на резервация |
-| POST | `/api/admin/edit-client` | Редакция на име по телефон (всички записи) |
-| GET | `/api/admin/clients` | Топ клиенти (сортирани по посещения, после по оборот) |
-| GET | `/api/admin/schedule?date=` | График за конкретна дата |
-| GET | `/api/admin/notification-status` | Статус на Telegram и Email |
-| POST | `/api/admin/block-phone` | Блокиране на телефон |
-| POST | `/api/admin/unblock-phone` | Отблокиране на телефон |
-| GET | `/api/admin/blocked-phones` | Списък с блокирани телефони |
-
----
-
-## Клиентски Интерфейс (index.html)
-
-Тъмна тема с модерен дизайн. Достъпен на `http://localhost:3000`.
-
-### Функции
-
-1. **Навигация** - Секции: Начало, Услуги, Запази Час, Контакти
-2. **Избор на услуга** - 4 карти с описание и цена, бутон "Запази час"
-3. **Избор на дата** - Календар показващ само бъдещи дати
-4. **Избор на час** - Решетка със свободни слотове (заетите не се показват)
-5. **Форма за данни** - Име, телефон (валидация за BG формат), email (незадължителен)
-6. **Статус модал** - След изпращане показва код за проверка с auto-refresh на всеки 5 секунди
-7. **Блокирани телефони** - Inline съобщение "Не можете да запазите час" при блокиран номер
-
-### Валидация на телефон
-
-Приема формати: `0887123456` или `+359887123456`. Regex: `/^(\+359|0)8[7-9][0-9]{7}$/`
-
-Телефоните се нормализират на сървъра: `+359...` → `0...`
-
----
-
-## Админ Панел (admin.html)
-
-Тъмна тема с градиент фон и златни акценти (#d4af37). Достъпен на `http://localhost:3000/admin.html`.
-
-### Автентикация
-
-- Session-based auth с express-session
-- Credentials от .env (ADMIN_USERNAME, ADMIN_PASSWORD)
-- Auto-redirect към login при изтекла сесия
-
-### Секции (Sidebar)
-
-#### 1. Резервации (Dashboard)
-
-- **Статистически карти** - Чакащи, Всички, Приходи (прогноза)
-- **Таблица с резервации** - Сортирани по createdAt (най-новите първи)
-- **Търсене** - По име, телефон или код за потвърждение
-- **Действия:**
-  - Потвърди (зелен бутон) → изпраща Telegram + Email на клиента
-  - Откажи (червен бутон) → изпраща email за отказ
-  - Редакция на име (молив иконка)
-- **Auto-refresh** на всеки 30 секунди
-- **Нотификации dropdown** - Звънче с бадж за брой чакащи
-
-#### 2. График
-
-- **Персонализиран календар** - Dropdown с български месеци (Пн-Нд)
-- **Стрелки ляво/дясно** - Навигация по дни
-- **Бутон "Днес"** - Бързо връщане към днешната дата
-- **Решетка с часове** - Всички работни часове за деня
-  - Зелена лента = потвърден
-  - Оранжева лента = чака
-  - Избледнял = свободен
-
-#### 3. Топ Клиенти
-
-- Таблица с ранкинг (медали за топ 3)
-- Сортиране: първо по брой посещения, после по общо похарчени
-- Колони: Ранг, Име (редактируемо), Телефон, Посещения, Похарчени, Последно посещение
-
-#### 4. Блокирани
-
-- **Ръчно добавяне** - Телефон + причина (незадължителна)
-- **Таблица** - Списък с блокирани номера
-- **Отблокиране** - Бутон за премахване от списъка
-- При блокиран телефон: клиентът получава inline съобщение при опит за резервация
-
-### Responsive дизайн
-
-- Мобилна версия с sidebar toggle (hamburger menu)
-- Таблиците се конвертират в card layout на мобилни устройства
-- Календарът се позиционира за удобен мобилен достъп
-
----
-
-## Telegram Бот (services/telegram.js)
-
-### Настройка
-
-1. Отворете Telegram, потърсете @BotFather
-2. Изпратете `/newbot`, следвайте инструкциите
-3. Копирайте токена в `TELEGRAM_BOT_TOKEN` в .env
-4. Изпратете `/admin` на бота за да получите Chat ID
-5. Копирайте Chat ID в `TELEGRAM_ADMIN_CHAT_ID` в .env
-
-### Как работи
-
-- **Long polling** - Ботът проверява за нови съобщения на всеки 3 секунди
-- **Абониране** - Клиентът търси бота, натиска Start, изпраща телефонен номер
-- **Свързване** - Телефонът се записва в `telegram_subscribers` таблицата
-
-### Известия
-
-| Събитие | Получател | Съобщение |
-|---------|-----------|-----------|
-| Нова резервация | Админ (Халил) | Име, телефон, дата, час, услуга, цена |
-| Потвърждение | Клиент (ако е абониран) | Дата, час, услуга, адрес |
-| Напомняне (30 мин) | Клиент (ако е абониран) | Час и адрес |
-
-### Команди на бота
-
-| Команда | Действие |
-|---------|----------|
-| `/start` | Приветствие + инструкции за абониране |
-| `/admin` | Показва Chat ID за .env конфигурация |
-| Телефонен номер | Свързва Telegram акаунта с телефона |
-
----
-
-## Email Нотификации (services/email.js)
-
-### Настройка (Gmail)
-
-1. Включете двуфакторна автентикация в Google акаунта
-2. Отидете на https://myaccount.google.com/apppasswords
-3. Създайте App Password за "Mail"
-4. Поставете email и password в .env
-
-### Известия
-
-| Тип | Кога се изпраща | Съдържание |
-|-----|-----------------|-----------|
-| Потвърждение | Админ натисне "Потвърди" | Дата, час, услуга, адрес, Google Maps линк |
-| Отказ | Админ натисне "Откажи" | Формално съобщение с молба за ново записване |
-| Напомняне | 30 мин преди час (автоматично) | Час и адрес |
-| Админ нотификация | Нова резервация | Детайли за новата заявка |
-
-Всички email-и са с HTML шаблон, стилизиран с бранд цветовете (#d4af37 златно, тъмен фон).
-
----
-
-## Scheduler (scheduler.js)
-
-Cron job, който се изпълнява **всяка минута** и проверява за предстоящи часове.
-
-### Логика
-
-1. Взима текущия час + 30 минути
-2. Търси резервации за днес с:
-   - `status = 'confirmed'`
-   - `time = сега + 30 мин`
-   - `reminderSent = 0`
-3. Изпраща напомняне чрез Telegram (ако клиентът е абониран) и/или Email
-4. Маркира `reminderSent = 1` ако поне една нотификация е успешна
-
----
-
-## Нормализация на Телефони
-
-Навсякъде в системата телефоните се нормализират:
-
-```
-+359887123456 → 0887123456
-```
-
-Това гарантира, че един и същи номер ще бъде разпознат независимо от формата на въвеждане.
-
----
-
-## Адрес на Бръснарницата
-
-**ул. Коматевско шосе 278, Пловдив**
-
-Използва се в email шаблоните и Telegram съобщенията за навигация.
-
----
-
-## Deployment
-
-### Локално
-
+### Render
+1. Create new Web Service
+2. Connect GitHub repo
+3. Build: `npm install`
+4. Start: `npm start`
+5. Add environment variables in dashboard
+
+### VPS (Ubuntu)
 ```bash
+# Install Node.js 18+
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Clone & setup
+git clone https://github.com/yourusername/wellness-spa.git
+cd wellness-spa
 npm install
-# Конфигурирайте .env
-npm start
+
+# Run with PM2
+sudo npm install -g pm2
+pm2 start server.js --name wellness-spa
+pm2 save
+pm2 startup
 ```
-
-### Облачен хостинг (Railway / Render)
-
-1. Push кода в GitHub
-2. Свържете repository с Railway/Render
-3. Добавете environment variables от .env
-4. Стартирайте с `npm start`
-
-**Важно:** За Telegram webhook на облачен хост, ботът работи с long polling (не се нуждае от webhook URL).
 
 ---
 
-## Git
+## 🛠️ Tech Stack
 
-Първи комит включва пълната функционалност. За връщане към тази версия:
+- **Backend:** Node.js + Express
+- **Database:** SQLite (perfect for small-medium businesses)
+- **Frontend:** Vanilla JS (no frameworks - fast & simple)
+- **Styling:** Custom CSS with glassmorphism effects
+- **Notifications:** Nodemailer (email) + Telegram Bot API
 
-```bash
-git log --oneline     # Вижте хеша на комита
-git checkout <hash>   # Върнете се към конкретна версия
-```
+---
+
+## 📞 Support & Questions
+
+For setup help or customization requests:
+- Email: info@serenityspa.bg
+- Telegram: @serenityspa
+
+---
+
+## 📄 License
+
+MIT License - Use freely for your SPA business!
+
+---
+
+**Made with 💚 for wellness professionals**
