@@ -33,13 +33,13 @@
     <meta name="twitter:description" id="twDescription" content="">
 
     <!-- Theme Color -->
-    <meta name="theme-color" content="#0F0F1A">
+    <meta name="theme-color" content="#FAFAF8">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap"></noscript>
 
     <!-- Critical CSS (cache-bust) -->
     <link rel="stylesheet" href="style.css?v=20260221d">
@@ -166,6 +166,12 @@
                     </div>
                     <input type="email" id="clientEmail" placeholder="Email (незадължително)">
                     <small style="color: #666; display: block; margin-bottom: 15px; font-size: 12px;">За получаване на потвърждение и напомняне</small>
+                    <select id="therapistSelect" style="display:none;">
+                        <option value="">Без предпочитание за терапевт</option>
+                    </select>
+                    <select id="pressureSelect" style="display:none;">
+                        <option value="">Натиск на масаж (незадължително)</option>
+                    </select>
                     <button class="btn" id="submitBtn" onclick="submitBooking()" style="width: 100%; justify-content: center;">
                         <span class="btn-text"><i class="fas fa-paper-plane"></i> Изпрати заявка</span>
                         <span class="btn-loading" style="display: none;"><i class="fas fa-spinner fa-spin"></i> Изпращане...</span>
@@ -297,7 +303,7 @@
         }
         .auto-refresh-note {
             display: flex; align-items: center; justify-content: center;
-            gap: 10px; color: #5A6B5C; font-size: 13px; margin: 15px 0;
+            gap: 10px; color: #6B7D6D; font-size: 13px; margin: 15px 0;
         }
         .spinner {
             width: 14px; height: 14px;
@@ -420,8 +426,8 @@
                 document.getElementById('heroCity').textContent = cfg.business.address.city;
 
                 // Hero background
-                document.querySelector('.hero').style.background = 
-                    'linear-gradient(rgba(107,138,104,0.55), rgba(200,184,219,0.45)), url(\'' + cfg.theme.heroImage + '\')';
+                document.querySelector('.hero').style.background =
+                    'linear-gradient(rgba(250,250,248,0.7), rgba(245,240,235,0.8)), url(\'' + cfg.theme.heroImage + '\')';
                 document.querySelector('.hero').style.backgroundSize = 'cover';
                 document.querySelector('.hero').style.backgroundPosition = 'center';
 
@@ -443,6 +449,7 @@
                         '</div>' +
                         '<div class="service-body">' +
                             '<h3>' + svc.name + '</h3>' +
+                            '<p class="service-desc">' + svc.description + '</p>' +
                             '<div class="service-footer">' +
                                 '<span class="price">' + svc.price + ' ' + cfg.booking.currency + '</span>' +
                                 '<button class="book-btn"><i class="fas fa-calendar-check"></i> Запази</button>' +
@@ -503,6 +510,34 @@
                 // Setup inline phone validation
                 setupPhoneValidation();
 
+                // Therapist selection
+                if (cfg.booking.therapists && cfg.booking.therapists.length > 0) {
+                    const therapistSelect = document.getElementById('therapistSelect');
+                    therapistSelect.style.display = 'block';
+                    therapistSelect.innerHTML = '<option value="">Без предпочитание за терапевт</option>';
+                    cfg.booking.therapists.forEach(function(t) {
+                        if (t !== 'Без предпочитание') {
+                            const opt = document.createElement('option');
+                            opt.value = t;
+                            opt.textContent = t;
+                            therapistSelect.appendChild(opt);
+                        }
+                    });
+                }
+
+                // Massage pressure selection
+                if (cfg.booking.massagePressure && cfg.booking.massagePressure.length > 0) {
+                    const pressureSelect = document.getElementById('pressureSelect');
+                    pressureSelect.style.display = 'block';
+                    pressureSelect.innerHTML = '<option value="">Натиск на масаж (незадължително)</option>';
+                    cfg.booking.massagePressure.forEach(function(p) {
+                        const opt = document.createElement('option');
+                        opt.value = p;
+                        opt.textContent = p;
+                        pressureSelect.appendChild(opt);
+                    });
+                }
+
             } catch (e) {
                 console.error('Failed to load config:', e);
             }
@@ -535,17 +570,29 @@
         }
 
         // ========== Toast Notifications ==========
-        function showToast(message, type = 'success') {
-            const icons = { success: '✓', error: '✗', info: 'ℹ' };
-            const toast = document.createElement('div');
+        function showToast(message, type) {
+            type = type || 'success';
+            var icons = { success: '✓', error: '✗', info: 'ℹ', warning: '⚠' };
+            var toast = document.createElement('div');
             toast.className = 'toast toast-' + type;
-            toast.innerHTML = '<div class="toast-icon">' + (icons[type] || icons.info) + '</div><span>' + message + '</span>';
+            var iconEl = document.createElement('div');
+            iconEl.className = 'toast-icon';
+            iconEl.textContent = icons[type] || icons.info;
+            var textEl = document.createElement('span');
+            textEl.textContent = message;
+            var closeBtn = document.createElement('button');
+            closeBtn.className = 'toast-close';
+            closeBtn.textContent = '×';
+            closeBtn.onclick = function() { toast.remove(); };
+            toast.appendChild(iconEl);
+            toast.appendChild(textEl);
+            toast.appendChild(closeBtn);
             document.body.appendChild(toast);
-            setTimeout(() => toast.classList.add('show'), 50);
-            setTimeout(() => {
+            setTimeout(function() { toast.classList.add('show'); }, 50);
+            setTimeout(function() {
                 toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+                setTimeout(function() { toast.remove(); }, 300);
+            }, 3500);
         }
 
         // ========== Progress Indicator ==========
@@ -636,6 +683,8 @@
             document.getElementById("blockedMessage").style.display = "none";
             document.getElementById("submitBtn").style.display = "";
             document.getElementById("phoneError").style.display = "none";
+            document.getElementById('therapistSelect').selectedIndex = 0;
+            document.getElementById('pressureSelect').selectedIndex = 0;
             selectedTime = null;
             updateProgress(1);
         }
@@ -813,7 +862,7 @@
                 const res = await fetch('/api/book', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ date, time: selectedTime, service: currentService, price, clientName: name, clientPhone: phone, clientEmail: email || null })
+                    body: JSON.stringify({ date, time: selectedTime, service: currentService, price, clientName: name, clientPhone: phone, clientEmail: email || null, therapist: document.getElementById('therapistSelect').value || null, massagePressure: document.getElementById('pressureSelect').value || null })
                 });
 
                 const data = await res.json();

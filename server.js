@@ -97,6 +97,8 @@ db.serialize(() => {
         clientName TEXT,
         clientPhone TEXT,
         clientEmail TEXT,
+        therapist TEXT,
+        massagePressure TEXT,
         status TEXT DEFAULT 'pending',
         confirmationCode TEXT,
         reminderSent INTEGER DEFAULT 0,
@@ -187,7 +189,9 @@ db.serialize(() => {
             { name: 'createdAt', sql: "ALTER TABLE appointments ADD COLUMN createdAt DATETIME DEFAULT CURRENT_TIMESTAMP" },
             { name: 'confirmationCode', sql: "ALTER TABLE appointments ADD COLUMN confirmationCode TEXT" },
             { name: 'reminderSent', sql: "ALTER TABLE appointments ADD COLUMN reminderSent INTEGER DEFAULT 0" },
-            { name: 'clientEmail', sql: "ALTER TABLE appointments ADD COLUMN clientEmail TEXT" }
+            { name: 'clientEmail', sql: "ALTER TABLE appointments ADD COLUMN clientEmail TEXT" },
+            { name: 'therapist', sql: "ALTER TABLE appointments ADD COLUMN therapist TEXT" },
+            { name: 'massagePressure', sql: "ALTER TABLE appointments ADD COLUMN massagePressure TEXT" }
         ];
 
         migrations.forEach(migration => {
@@ -311,7 +315,7 @@ app.get('/api/status/:code', (req, res) => {
 
 // API: Book Appointment
 app.post('/api/book', (req, res) => {
-    const { date, time, service, clientName, clientPhone, clientEmail } = req.body;
+    const { date, time, service, clientName, clientPhone, clientEmail, therapist, massagePressure } = req.body;
 
     if (!date || !time || !clientName || !clientPhone || !service) {
         return res.status(400).json({ error: "Missing required fields" });
@@ -343,6 +347,11 @@ app.post('/api/book', (req, res) => {
     let cleanPhone = clientPhone.replace(/[^0-9+]/g, '');
     if (cleanPhone.startsWith('+359')) cleanPhone = '0' + cleanPhone.slice(4);
 
+    const validTherapists = config.booking.therapists || [];
+    const selectedTherapist = therapist && validTherapists.includes(therapist) ? therapist : null;
+    const validPressures = config.booking.massagePressure || [];
+    const selectedPressure = massagePressure && validPressures.includes(massagePressure) ? massagePressure : null;
+
     const sanitizedName = clientName.replace(/[<>]/g, '').trim().substring(0, 100);
     const sanitizedEmail = clientEmail ? clientEmail.trim().toLowerCase().substring(0, 100) : null;
     const confirmationCode = generateConfirmationCode();
@@ -358,8 +367,8 @@ app.post('/api/book', (req, res) => {
         if (err) return res.status(500).json({ error: "Database error" });
         if (row) return res.status(409).json({ error: "Slot already taken" });
 
-        const stmt = db.prepare("INSERT INTO appointments (date, time, service, price, clientName, clientPhone, clientEmail, confirmationCode, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        stmt.run(date, time, service, validatedPrice, sanitizedName, cleanPhone, sanitizedEmail, confirmationCode, new Date().toISOString(), function(err) {
+        const stmt = db.prepare("INSERT INTO appointments (date, time, service, price, clientName, clientPhone, clientEmail, therapist, massagePressure, confirmationCode, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        stmt.run(date, time, service, validatedPrice, sanitizedName, cleanPhone, sanitizedEmail, selectedTherapist, selectedPressure, confirmationCode, new Date().toISOString(), function(err) {
             if (err) return res.status(500).json({ error: "Failed to create appointment" });
 
             // Notify admin via Telegram
@@ -721,7 +730,7 @@ app.get('/api/admin/chart-data', requireAuth, (req, res) => {
     const placeholders = last7Days.map(() => '?').join(',');
     
     db.all(
-        `SELECT date, COUNT(*) as count FROM bookings WHERE date IN (${placeholders}) GROUP BY date`,
+        `SELECT date, COUNT(*) as count FROM appointments WHERE date IN (${placeholders}) GROUP BY date`,
         last7Days,
         (err, rows) => {
             if (err) return res.status(500).json({ error: err.message });
