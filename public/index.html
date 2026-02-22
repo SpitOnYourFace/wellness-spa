@@ -231,7 +231,7 @@
         <div class="info-container">
             <div class="info-location-card" data-aos="fade-right">
                 <div class="info-location-map">
-                    <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&q=80&fit=crop" alt="Serenity Spa интериор" class="info-location-img">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80&fit=crop" alt="Serenity Spa интериор" class="info-location-img">
                     <div class="info-location-overlay">
                         <div class="info-location-badge">
                             <i class="fas fa-map-marker-alt"></i>
@@ -444,9 +444,9 @@
 
                 // Hero background
                 document.querySelector('.hero').style.background =
-                    'linear-gradient(rgba(250,250,248,0.7), rgba(245,240,235,0.8)), url(\'' + cfg.theme.heroImage + '\')';
+                    'linear-gradient(rgba(250,250,248,0.65), rgba(245,240,235,0.75)), url(\'' + cfg.theme.heroImage + '\')';
                 document.querySelector('.hero').style.backgroundSize = 'cover';
-                document.querySelector('.hero').style.backgroundPosition = 'center';
+                document.querySelector('.hero').style.backgroundPosition = 'center top';
 
                 // Services
                 const grid = document.getElementById('serviceGrid');
@@ -642,11 +642,15 @@
 
         // ========== Mobile Menu ==========
         function toggleMobileMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
+            const nav = document.querySelector('nav');
+            const btn = document.querySelector('.mobile-menu-btn');
+            nav.classList.toggle('open');
+            btn.classList.toggle('open');
         }
 
         function closeMobileMenu() {
-            document.getElementById('navLinks').classList.remove('active');
+            document.querySelector('nav').classList.remove('open');
+            document.querySelector('.mobile-menu-btn').classList.remove('open');
         }
 
         // ========== Booking Logic ==========
