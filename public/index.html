@@ -223,29 +223,43 @@
 
     <!-- Info Section -->
     <section id="info" class="info-section">
+        <div class="info-section-header" data-aos="fade-up">
+            <div class="section-label"><i class="fas fa-spa"></i> Посетете ни</div>
+            <h2 class="section-title">Информация & Контакти</h2>
+            <div class="section-ornament">✿</div>
+        </div>
         <div class="info-container">
-            <div class="info-main" data-aos="fade-right">
-                <div class="spa-accent-line"></div>
-                <div class="info-main-content">
-                    <h2>Намери ни</h2>
-                    <div class="location-display">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <span class="district-name" id="infoDistrict"></span>
-                            <span class="street-name" id="infoStreet"></span>
+            <div class="info-location-card" data-aos="fade-right">
+                <div class="info-location-map">
+                    <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&q=80&fit=crop" alt="Serenity Spa интериор" class="info-location-img">
+                    <div class="info-location-overlay">
+                        <div class="info-location-badge">
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
                     </div>
-                    <div class="rating-display">
-                        <div class="stars">★★★★★</div>
-                        <span id="infoRating"></span>
+                </div>
+                <div class="info-location-body">
+                    <h3>Намери ни</h3>
+                    <div class="info-location-address">
+                        <div class="info-location-detail">
+                            <i class="fas fa-map-pin"></i>
+                            <div>
+                                <span class="district-name" id="infoDistrict"></span>
+                                <span class="street-name" id="infoStreet"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-location-rating">
+                        <div class="info-rating-stars">★★★★★</div>
+                        <span class="info-rating-text" id="infoRating"></span>
                     </div>
                     <a id="infoDirections" href="#" target="_blank" class="directions-btn">
-                        <i class="fas fa-directions"></i> Упътване
+                        <i class="fas fa-directions"></i> Виж на картата
                     </a>
                 </div>
             </div>
 
-            <div class="info-cards" data-aos="fade-left">
+            <div class="info-details" data-aos="fade-left">
                 <div class="info-card">
                     <div class="info-card-icon"><i class="fas fa-clock"></i></div>
                     <div class="info-card-content">
@@ -254,16 +268,19 @@
                     </div>
                 </div>
                 <div class="info-card">
-                    <div class="info-card-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="info-card-icon"><i class="fas fa-envelope"></i></div>
                     <div class="info-card-content">
                         <h4>Контакти</h4>
                         <a id="infoPhone" href="#" class="contact-link">
                             <i class="fas fa-phone"></i> <span id="infoPhoneDisplay"></span>
                         </a>
+                        <a id="infoEmail" href="#" class="contact-link contact-link-email">
+                            <i class="fas fa-envelope"></i> <span id="infoEmailDisplay"></span>
+                        </a>
                     </div>
                 </div>
                 <div class="info-card">
-                    <div class="info-card-icon"><i class="fas fa-share-alt"></i></div>
+                    <div class="info-card-icon"><i class="fas fa-heart"></i></div>
                     <div class="info-card-content">
                         <h4>Социални мрежи</h4>
                         <div class="social-links" id="infoSocial"></div>
@@ -472,16 +489,23 @@
                 
                 cfg.workHours.display.forEach(h => {
                     const row = document.createElement('div');
-                    const isToday = h.days.includes(todayShort) || 
+                    const isToday = h.days.includes(todayShort) ||
                         (todayShort === 'Пон' && h.days.includes('Пон')) ||
                         (todayShort === 'Съб' && h.days.includes('Събота')) ||
                         (todayShort === 'Нед' && h.days.includes('Неделя'));
-                    
-                    row.className = 'hour-row' + 
-                        (h.closed ? ' closed' : '') + 
+
+                    row.className = 'hours-row' +
+                        (h.closed ? ' closed' : '') +
                         (h.break ? ' break' : '') +
                         (isToday ? ' today' : '');
-                    row.innerHTML = '<span>' + h.days + (isToday ? ' 📍' : '') + '</span><span class="hour-time">' + h.hours + '</span>';
+                    const daySpan = document.createElement('span');
+                    daySpan.className = 'hours-day';
+                    daySpan.textContent = h.days + (isToday ? ' 📍' : '');
+                    const timeSpan = document.createElement('span');
+                    timeSpan.className = 'hours-time';
+                    timeSpan.textContent = h.hours;
+                    row.appendChild(daySpan);
+                    row.appendChild(timeSpan);
                     hoursList.appendChild(row);
                 });
 
@@ -491,6 +515,12 @@
                 document.getElementById('ctaPhone').href = 'tel:' + cfg.business.phone;
                 document.getElementById('ctaPhoneDisplay').textContent = cfg.business.phoneDisplay;
                 document.getElementById('rejectedPhone').href = 'tel:' + cfg.business.phone;
+
+                // Email
+                if (cfg.business.email) {
+                    document.getElementById('infoEmail').href = 'mailto:' + cfg.business.email;
+                    document.getElementById('infoEmailDisplay').textContent = cfg.business.email;
+                }
 
                 // Social
                 const socialEl = document.getElementById('infoSocial');
