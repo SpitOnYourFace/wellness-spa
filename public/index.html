@@ -6,7 +6,7 @@
     <title id="pageTitle">Зареждане...</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💈</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧖‍♀️</text></svg>">
 
     <!-- SEO Meta Tags -->
     <meta name="description" id="metaDescription" content="">
@@ -28,16 +28,17 @@
     <meta name="twitter:description" id="twDescription" content="">
 
     <!-- Theme Color -->
-    <meta name="theme-color" content="#d4af37">
+    <meta name="theme-color" content="#8BA888">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap"></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;500;700&display=swap"></noscript>
 
     <!-- Critical CSS (cache-bust) -->
     <link rel="stylesheet" href="style.css?v=20260221d">
+    <link rel="stylesheet" href="animations.css">
 
     <!-- DNS prefetch for external resources -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
@@ -195,7 +196,7 @@
                     <p>Код за резервация:</p>
                     <div class="confirmation-code" id="confirmationCodeConfirmed">-</div>
                 </div>
-                <p class="success-note">Очакваме ви! 💈</p>
+                <p class="success-note">Очакваме ви! 🧖‍♀️</p>
                 <button class="btn" onclick="closeSuccess()">Страхотно!</button>
             </div>
             <div id="statusRejected" style="display: none;">
@@ -295,7 +296,7 @@
         }
         .spinner {
             width: 14px; height: 14px;
-            border: 2px solid #333; border-top-color: #d4af37;
+            border: 2px solid #333; border-top-color: #8BA888;
             border-radius: 50%; animation: spin 1s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
@@ -313,7 +314,7 @@
         .success-box { border-color: #00D68F; background: rgba(0, 214, 143, 0.08); }
         .btn-secondary {
             background: transparent; border: 2px solid rgba(212, 175, 55, 0.4);
-            color: #d4af37; padding: 13px 38px; border-radius: 50px;
+            color: #8BA888; padding: 13px 38px; border-radius: 50px;
             cursor: pointer; font-size: 14px; font-weight: bold;
             text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s;
         }
@@ -326,7 +327,7 @@
         .confirmation-box p { margin: 0 0 10px; color: #888; font-size: 13px; }
         .confirmation-code {
             font-family: 'Courier New', monospace; font-size: 28px;
-            font-weight: bold; color: #d4af37; letter-spacing: 3px; padding: 10px;
+            font-weight: bold; color: #8BA888; letter-spacing: 3px; padding: 10px;
         }
         .success-note { color: #666; font-size: 13px; margin-top: 10px; }
         #submitBtn { position: relative; min-width: 180px; }
@@ -429,9 +430,9 @@
                     card.setAttribute('data-aos-delay', (i * 100).toString());
                     card.onclick = () => selectService(svc.name, svc.price);
                     card.innerHTML = (svc.featured ? '<div class="featured-badge"><i class="fas fa-star"></i> Препоръчано</div>' : '') +
-                        '<div class="service-icon"><i class="' + svc.icon + '"></i></div>' +
+                        '<img src="' + svc.image + '" alt="' + svc.name + '" class="service-icon" />' +
                         '<h3>' + svc.name + '</h3>' +
-                        '<p>' + svc.description + '</p>' +
+                        '<div class="service-duration">' + svc.duration + ' мин</div>' +
                         '<div class="service-footer">' +
                             '<span class="price">' + svc.price + ' ' + cfg.booking.currency + '</span>' +
                             '<button class="book-btn">Запази</button>' +
@@ -854,5 +855,6 @@
         window.addEventListener('scroll', highlightNav);
         highlightNav();
     </script>
+    <script src="scroll-animations.js"></script>
 </body>
 </html>
