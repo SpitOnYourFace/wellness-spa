@@ -116,7 +116,7 @@
   "booking": {
     "confirmationPrefix": "SPA",
     "daysAhead": 21,
-    "currency": "лв",
+    "currency": "€",
     "phoneRegex": "^(\\+359|0)8[7-9][0-9]{7}$",
     "therapists": [
       "Без предпочитание",
