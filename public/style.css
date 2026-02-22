@@ -871,6 +871,19 @@ nav a.active {
     color: #5A6B5C;
 }
 
+.contact .btn-outline {
+    background: rgba(139, 168, 136, 0.1);
+    border: 2px solid #8BA888;
+    color: #5A6B5C;
+    box-shadow: 0 4px 15px rgba(139, 168, 136, 0.2);
+}
+
+.contact .btn-outline:hover {
+    background: #8BA888;
+    color: #FFFFFF;
+    border-color: #8BA888;
+}
+
 /* ========== FOOTER ========== */
 footer {
     padding: 25px 20px;
