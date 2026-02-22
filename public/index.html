@@ -6,10 +6,10 @@
     <title id="pageTitle">Зареждане...</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧖‍♀️</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%238BA888'/%3E%3Cpath d='M50 20c-4 12-16 20-16 30 0 9 7 16 16 16s16-7 16-16c0-10-12-18-16-30z' fill='white' opacity='0.9'/%3E%3Cpath d='M50 28c-3 9-10 15-10 22 0 6 4 10 10 10s10-4 10-10c0-7-7-13-10-22z' fill='%238BA888' opacity='0.3'/%3E%3C/svg%3E">
 
     <!-- Performance: Preload hero image -->
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=90">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=1400&q=80">
     <link rel="dns-prefetch" href="https://images.unsplash.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 
@@ -301,7 +301,31 @@
     </section>
 
     <footer>
-        <p id="footerText"></p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo" id="footerLogo"></div>
+                <p class="footer-tagline" id="footerTagline"></p>
+            </div>
+            <div class="footer-links">
+                <h5>Навигация</h5>
+                <a href="#home">Начало</a>
+                <a href="#services">Услуги</a>
+                <a href="#info">Контакти</a>
+            </div>
+            <div class="footer-contact">
+                <h5>Контакти</h5>
+                <p id="footerAddress"></p>
+                <a id="footerPhone" href="#"></a>
+                <a id="footerEmail" href="#"></a>
+            </div>
+            <div class="footer-social">
+                <h5>Следвайте ни</h5>
+                <div class="footer-social-links" id="footerSocial"></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p id="footerText"></p>
+        </div>
     </footer>
 
     <style>
@@ -532,7 +556,33 @@
                 if (socials.github) socialEl.innerHTML += '<a href="' + socials.github + '" target="_blank" rel="noopener" class="social-btn github" title="GitHub"><i class="fab fa-github"></i></a>';
 
                 // Footer
-                document.getElementById('footerText').innerHTML = '&copy; ' + cfg.business.year + ' ' + cfg.business.name + '. Всички права запазени.';
+                document.getElementById('footerText').textContent = '\u00A9 ' + cfg.business.year + ' ' + cfg.business.name + '. Всички права запазени.';
+
+                // Footer details
+                document.getElementById('footerLogo').textContent = cfg.business.shortName;
+                document.getElementById('footerTagline').textContent = cfg.business.tagline;
+                document.getElementById('footerAddress').textContent = cfg.business.address.street + ', ' + cfg.business.address.city;
+                const fPhone = document.getElementById('footerPhone');
+                fPhone.href = 'tel:' + cfg.business.phone;
+                fPhone.textContent = cfg.business.phoneDisplay;
+                const fEmail = document.getElementById('footerEmail');
+                fEmail.href = 'mailto:' + cfg.business.email;
+                fEmail.textContent = cfg.business.email;
+                const fSocial = document.getElementById('footerSocial');
+                fSocial.textContent = '';
+                const addFooterSocial = (url, icon, title) => {
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.target = '_blank';
+                    a.rel = 'noopener';
+                    a.title = title;
+                    const i = document.createElement('i');
+                    i.className = icon;
+                    a.appendChild(i);
+                    fSocial.appendChild(a);
+                };
+                if (socials.instagram && socials.instagram !== '#') addFooterSocial(socials.instagram, 'fab fa-instagram', 'Instagram');
+                if (socials.facebook && socials.facebook !== '#') addFooterSocial(socials.facebook, 'fab fa-facebook-f', 'Facebook');
 
                 // Theme
                 document.documentElement.style.setProperty('--primary-color', cfg.theme.primaryColor);
@@ -663,7 +713,7 @@
             currentService = name;
             currentPrice = price;
             document.getElementById("selectedService").innerText = name + " (" + price + " " + (SITE_CONFIG ? SITE_CONFIG.booking.currency : "€") + ")";
-            modal.style.display = "block";
+            modal.classList.add("active");
             document.getElementById("datePicker").value = new Date().toISOString().split('T')[0];
             generateDates();
             updateProgress(1);
@@ -682,7 +732,7 @@
                 const dayName = i === 0 ? "Днес" : i === 1 ? "Утре" : days[d.getDay()];
 
                 const card = document.createElement("div");
-                card.className = "date-card";
+                card.className = "date-btn";
                 if(i===0) card.classList.add("active");
                 card.onclick = () => selectDate(card, isoDate);
                 card.innerHTML = '<span class="day-name">' + dayName + '</span>' +
@@ -698,7 +748,7 @@
         }
 
         function selectDate(el, date) {
-            document.querySelectorAll(".date-card").forEach(c => c.classList.remove("active"));
+            document.querySelectorAll(".date-btn").forEach(c => c.classList.remove("active"));
             el.classList.add("active");
             document.getElementById("datePicker").value = date;
             loadSlots();
@@ -706,7 +756,7 @@
         }
 
         function closeModal() {
-            modal.style.display = "none";
+            modal.classList.remove("active");
             document.getElementById("clientDetails").style.display = "none";
             document.getElementById("clientName").value = "";
             document.getElementById("clientPhone").value = "";
