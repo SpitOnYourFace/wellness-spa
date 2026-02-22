@@ -1,81 +1,69 @@
-/* Parallax & Scroll Animations */
+/* V2 Noir Luxe — Animations */
 
-/* Fade-in on scroll */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+/* Subtle float for decorative elements */
+@keyframes floatFlower {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
 }
 
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Parallax sections */
-.parallax-section {
-    position: relative;
-    overflow: hidden;
-}
-
-.parallax-bg {
-    position: absolute;
-    top: -20%;
-    left: 0;
-    width: 100%;
-    height: 140%;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.3s ease-out;
-    will-change: transform;
-}
-
-/* Floating animation for decorative elements */
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
-}
-
-.floating {
-    animation: float 6s ease-in-out infinite;
-}
-
-/* Subtle pulse for featured items */
-@keyframes subtle-pulse {
-    0%, 100% { box-shadow: 0 8px 32px rgba(139, 168, 136, 0.15); }
-    50% { box-shadow: 0 8px 40px rgba(139, 168, 136, 0.25); }
-}
-
-.pulse-featured {
-    animation: subtle-pulse 4s ease-in-out infinite;
-}
-
-/* Smooth hover lift */
-.lift-on-hover {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.lift-on-hover:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(139, 168, 136, 0.2);
-}
-
-/* Gradient text shimmer */
+/* Gold shimmer on featured cards */
 @keyframes shimmer {
     0% { background-position: -200% center; }
     100% { background-position: 200% center; }
 }
 
-.shimmer-text {
-    background: linear-gradient(
-        90deg,
-        #8BA888 0%,
-        #C8B8DB 50%,
-        #8BA888 100%
-    );
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shimmer 8s linear infinite;
+/* Parallax grain texture overlay */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Smooth reveal for cards */
+[data-aos="fade-up"] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-aos="fade-up"].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[data-aos="fade-right"] {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-aos="fade-right"].aos-animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+[data-aos="fade-left"] {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-aos="fade-left"].aos-animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+[data-aos="zoom-in"] {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-aos="zoom-in"].aos-animate {
+    opacity: 1;
+    transform: scale(1);
 }

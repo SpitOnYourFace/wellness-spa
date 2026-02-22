@@ -1,36 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
   <defs>
-    <linearGradient id="sage" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#8BA888"/>
-      <stop offset="100%" style="stop-color:#C8B8DB"/>
-    </linearGradient>
-    <linearGradient id="cream" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FAFAF8"/>
-      <stop offset="100%" style="stop-color:#F5E6D3"/>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4A574"/>
+      <stop offset="100%" stop-color="#C9A4A4"/>
     </linearGradient>
   </defs>
-  <!-- Circle bg -->
-  <circle cx="100" cy="100" r="96" fill="url(#cream)" stroke="url(#sage)" stroke-width="3"/>
-  <!-- Inner ring -->
-  <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(139,168,136,0.2)" stroke-width="1"/>
-  <!-- Lotus flower icon -->
-  <g transform="translate(100,75)" fill="url(#sage)">
-    <!-- Center petal -->
-    <ellipse cx="0" cy="-12" rx="8" ry="20" opacity="0.9"/>
-    <!-- Left petals -->
-    <ellipse cx="-14" cy="-6" rx="7" ry="18" transform="rotate(-25,-14,-6)" opacity="0.75"/>
-    <ellipse cx="-24" cy="2" rx="6" ry="15" transform="rotate(-45,-24,2)" opacity="0.6"/>
-    <!-- Right petals -->
-    <ellipse cx="14" cy="-6" rx="7" ry="18" transform="rotate(25,14,-6)" opacity="0.75"/>
-    <ellipse cx="24" cy="2" rx="6" ry="15" transform="rotate(45,24,2)" opacity="0.6"/>
-    <!-- Center dot -->
-    <circle cx="0" cy="2" r="4" fill="#C8B8DB" opacity="0.8"/>
+  <!-- Outer ring -->
+  <circle cx="100" cy="100" r="90" fill="none" stroke="url(#g1)" stroke-width="1" opacity="0.3"/>
+  <!-- Lotus petals -->
+  <g transform="translate(100,105)" fill="none" stroke="url(#g1)" stroke-width="1.5" opacity="0.8">
+    <ellipse cx="0" cy="-20" rx="12" ry="30" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-20" rx="12" ry="30" transform="rotate(30)"/>
+    <ellipse cx="0" cy="-20" rx="12" ry="30" transform="rotate(-30)"/>
+    <ellipse cx="0" cy="-20" rx="12" ry="30" transform="rotate(60)"/>
+    <ellipse cx="0" cy="-20" rx="12" ry="30" transform="rotate(-60)"/>
   </g>
-  <!-- Text: SERENITY -->
-  <text x="100" y="125" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="600" fill="#8BA888" letter-spacing="4">SERENITY</text>
-  <!-- Text: WELLNESS & SPA -->
-  <text x="100" y="145" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#5A6B5C" letter-spacing="3">WELLNESS &amp; SPA</text>
-  <!-- Decorative lines -->
-  <line x1="40" y1="130" x2="65" y2="130" stroke="rgba(139,168,136,0.3)" stroke-width="1"/>
-  <line x1="135" y1="130" x2="160" y2="130" stroke="rgba(139,168,136,0.3)" stroke-width="1"/>
+  <!-- Center dot -->
+  <circle cx="100" cy="105" r="4" fill="#D4A574" opacity="0.6"/>
+  <!-- Text -->
+  <text x="100" y="160" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#D4A574" letter-spacing="4" opacity="0.7">SERENITY</text>
 </svg>
