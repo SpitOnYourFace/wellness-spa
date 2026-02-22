@@ -130,7 +130,7 @@ body {
 /* Topbar */
 .topbar {
     height: 70px; /* Slightly smaller */
-    background-color: rgba(18, 18, 18, 0.95);
+    background-color: rgba(250, 250, 248, 0.97);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -297,7 +297,7 @@ body {
 
 .stat-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    box-shadow: 0 8px 20px rgba(139, 168, 136, 0.15);
 }
 
 .accent-purple { border-bottom: 4px solid var(--c-purple); }
@@ -327,11 +327,11 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(139, 168, 136, 0.08);
 }
 
-.accent-purple .icon-box { color: var(--c-purple); background: rgba(108, 93, 211, 0.15); }
-.accent-blue .icon-box { color: var(--c-real-blue); background: rgba(47, 128, 237, 0.15); }
+.accent-purple .icon-box { color: var(--c-purple); background: rgba(200, 184, 219, 0.2); }
+.accent-blue .icon-box { color: var(--c-real-blue); background: rgba(139, 168, 136, 0.15); }
 
 .stat-value {
     font-size: 28px;
@@ -379,7 +379,7 @@ body {
 @media (max-width: 768px) {
     .sidebar {
         transform: translateX(-100%);
-        box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        box-shadow: 2px 0 10px rgba(139, 168, 136, 0.15);
     }
 
     .sidebar.active {

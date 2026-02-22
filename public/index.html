@@ -68,9 +68,9 @@
         </div>
         <nav>
             <ul id="navLinks">
-                <li><a href="#home" onclick="closeMobileMenu()">НАЧАЛО</a></li>
-                <li><a href="#services" onclick="closeMobileMenu()">УСЛУГИ</a></li>
-                <li><a href="#info" onclick="closeMobileMenu()">ИНФО</a></li>
+                <li><a href="#home" onclick="closeMobileMenu()">Начало</a></li>
+                <li><a href="#services" onclick="closeMobileMenu()">Услуги</a></li>
+                <li><a href="#info" onclick="closeMobileMenu()">Инфо</a></li>
             </ul>
         </nav>
     </header>
@@ -111,7 +111,7 @@
             <h2 class="section-title">Нашите Услуги</h2>
             <div class="title-decoration">
                 <span class="line"></span>
-                <span class="scissors">✿</span>
+                <span class="flower-icon">✿</span>
                 <span class="line"></span>
             </div>
         </div>
@@ -297,44 +297,44 @@
         }
         .auto-refresh-note {
             display: flex; align-items: center; justify-content: center;
-            gap: 10px; color: #666; font-size: 13px; margin: 15px 0;
+            gap: 10px; color: #5A6B5C; font-size: 13px; margin: 15px 0;
         }
         .spinner {
             width: 14px; height: 14px;
-            border: 2px solid #333; border-top-color: #8BA888;
+            border: 2px solid rgba(139,168,136,0.3); border-top-color: #8BA888;
             border-radius: 50%; animation: spin 1s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         .booking-details {
-            background: rgba(255,255,255,0.03); border-radius: 12px;
+            background: rgba(139,168,136,0.06); border-radius: 12px;
             padding: 15px; margin: 15px 0; text-align: left;
         }
         .booking-details .detail-row {
             display: flex; justify-content: space-between;
-            padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 8px 0; border-bottom: 1px solid rgba(139,168,136,0.1);
         }
         .booking-details .detail-row:last-child { border-bottom: none; }
-        .booking-details .label { color: #888; }
-        .booking-details .value { color: #fff; font-weight: 600; }
+        .booking-details .label { color: #5A6B5C; }
+        .booking-details .value { color: #2C3E2F; font-weight: 600; }
         .success-box { border-color: #00D68F; background: rgba(0, 214, 143, 0.08); }
         .btn-secondary {
-            background: transparent; border: 2px solid rgba(212, 175, 55, 0.4);
+            background: transparent; border: 2px solid rgba(139, 168, 136, 0.4);
             color: #8BA888; padding: 13px 38px; border-radius: 50px;
             cursor: pointer; font-size: 14px; font-weight: bold;
-            text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s;
+            letter-spacing: 1px; transition: all 0.3s;
         }
-        .btn-secondary:hover { background: rgba(212, 175, 55, 0.1); }
+        .btn-secondary:hover { background: rgba(139, 168, 136, 0.1); }
         .confirmation-box {
-            background: rgba(212, 175, 55, 0.08);
-            border: 2px dashed rgba(212, 175, 55, 0.3);
+            background: rgba(139, 168, 136, 0.08);
+            border: 2px dashed rgba(139, 168, 136, 0.3);
             border-radius: 14px; padding: 20px; margin: 20px 0; text-align: center;
         }
-        .confirmation-box p { margin: 0 0 10px; color: #888; font-size: 13px; }
+        .confirmation-box p { margin: 0 0 10px; color: #5A6B5C; font-size: 13px; }
         .confirmation-code {
             font-family: 'Courier New', monospace; font-size: 28px;
             font-weight: bold; color: #8BA888; letter-spacing: 3px; padding: 10px;
         }
-        .success-note { color: #666; font-size: 13px; margin-top: 10px; }
+        .success-note { color: #5A6B5C; font-size: 13px; margin-top: 10px; }
         #submitBtn { position: relative; min-width: 180px; }
         #submitBtn:disabled { opacity: 0.6; cursor: not-allowed; }
     </style>
@@ -575,7 +575,7 @@
         function selectService(name, price) {
             currentService = name;
             currentPrice = price;
-            document.getElementById("selectedService").innerText = name + " (" + price + " лв.)";
+            document.getElementById("selectedService").innerText = name + " (" + price + " " + (SITE_CONFIG ? SITE_CONFIG.booking.currency : "€") + ")";
             modal.style.display = "block";
             document.getElementById("datePicker").value = new Date().toISOString().split('T')[0];
             generateDates();
