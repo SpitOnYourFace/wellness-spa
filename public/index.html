@@ -8,6 +8,11 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧖‍♀️</text></svg>">
 
+    <!-- Performance: Preload hero image -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=90">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <!-- SEO Meta Tags -->
     <meta name="description" id="metaDescription" content="">
     <meta name="keywords" id="metaKeywords" content="">
@@ -95,18 +100,18 @@
         <!-- Hero Buttons -->
         <div class="hero-buttons" data-aos="fade-up" data-aos-delay="500">
             <button class="btn" onclick="quickBook()"><i class="fas fa-calendar-check"></i> Запази Час Сега</button>
-            <a href="#services" class="btn btn-outline"><i class="fas fa-cut"></i> Услуги & Цени</a>
+            <a href="#services" class="btn btn-outline"><i class="fas fa-spa"></i> Услуги & Цени</a>
         </div>
     </section>
 
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="services-header" data-aos="fade-up">
-            <span class="section-label"><i class="fas fa-cut"></i> Какво предлагаме</span>
+            <span class="section-label"><i class="fas fa-spa"></i> Какво предлагаме</span>
             <h2 class="section-title">Нашите Услуги</h2>
             <div class="title-decoration">
                 <span class="line"></span>
-                <span class="scissors">✂</span>
+                <span class="scissors">✿</span>
                 <span class="line"></span>
             </div>
         </div>
@@ -214,7 +219,7 @@
     <section id="info" class="info-section">
         <div class="info-container">
             <div class="info-main" data-aos="fade-right">
-                <div class="barber-pole"></div>
+                <div class="spa-accent-line"></div>
                 <div class="info-main-content">
                     <h2>Намери ни</h2>
                     <div class="location-display">
@@ -416,7 +421,7 @@
 
                 // Hero background
                 document.querySelector('.hero').style.background = 
-                    'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url(\'' + cfg.theme.heroImage + '\')';
+                    'linear-gradient(rgba(107,138,104,0.55), rgba(200,184,219,0.45)), url(\'' + cfg.theme.heroImage + '\')';
                 document.querySelector('.hero').style.backgroundSize = 'cover';
                 document.querySelector('.hero').style.backgroundPosition = 'center';
 
@@ -430,7 +435,7 @@
                     card.setAttribute('data-aos-delay', (i * 100).toString());
                     card.onclick = () => selectService(svc.name, svc.price);
                     card.innerHTML = (svc.featured ? '<div class="featured-badge"><i class="fas fa-star"></i> Препоръчано</div>' : '') +
-                        '<img src="' + svc.image + '" alt="' + svc.name + '" class="service-icon" />' +
+                        '<img src="' + svc.image + '" alt="' + svc.name + '" class="service-icon" loading="lazy" />' +
                         '<h3>' + svc.name + '</h3>' +
                         '<div class="service-duration">' + svc.duration + ' мин</div>' +
                         '<div class="service-footer">' +
